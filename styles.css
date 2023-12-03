@@ -58,8 +58,9 @@ video {
 
 .movie-card img {
     max-width: 150px;
-    height: auto;
+    height: 150px;
     border-radius: 8px;
+    object-fit: contain;
 }
 
 .movie-card h3 {

@@ -55,7 +55,9 @@ function getHLSStreamURLForMovie(movieId) {
             return 'https://prod-ent-live-gm.jiocinema.com/bpk-tv/Colors_HD_voot_MOB/Fallback/index.m3u8';
         case 'movie3':
             return 'https://prod-ent-live-gm.jiocinema.com/bpk-tv/Colors_Kannada_HD_voot_MOB/Fallback/index.m3u8';
+        case 'movie4':
+            return 'https://prod-ent-live-gm.jiocinema.com/hls/live/2101563/hd_akamai_iosmob_avc_24x7_bbkannada_day01/master.m3u8';
         default:
-            return 'https://example.com/default.m3u8';
+            return 'https://prod-ent-live-gm.jiocinema.com/hls/live/2105488/hd_akamai_iosmob_avc_24x7_bbhindi_day01/master.m3u8';
     }
 }
