@@ -8,19 +8,17 @@ body {
 .container {
     padding-top: 5vh;
     min-height: 50vh;
-    padding-bottom: 5vh;
-    padding-left: 5vh;
-    padding-right: 5vh;
-    margin: 20px auto;
+    padding-bottom: 2vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    margin: 5px auto;
     width: 600px;
     background-color: #7b7bdd;
     display: flex;
     flex-direction: column;
-    -webkit-box-align: center;
     align-items: center;
-    -webkit-box-pack: center;
     justify-content: center;
-    gap: 20rem;
+    gap: 0rem;
     overflow: hidden;
 }
 
@@ -69,17 +67,28 @@ video {
 }
 
 #backButton {
-            position: relative;
-            bottom: 0px;
-            transform: translateX(0%);
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+    position: relative;
+    bottom: 0px;
+    transform: translateX(0%);
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 #backButton:hover {
-            background-color: #2980b9;
-        }
+    background-color: #2980b9;
+}
+
+/* Additional styles for mobile responsiveness */
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding-top: 10px; /* Adjust as needed */
+        margin: 0;
+    }
+}
