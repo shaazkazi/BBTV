@@ -8,6 +8,11 @@
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.4/plyr.css" />
     <link rel="stylesheet" href="styles.css">
+    <link
+            href="https://fonts.googleapis.com/css2?family=poppins&display=swap"
+            rel="stylesheet"
+            type='text/css'
+        >
 </head>
 <body>
     <div class="container">
@@ -17,11 +22,15 @@
         </video>
     </div>
     
-    <center><button id="backButton">Back</button></center>
+    <center><a
+        href="/"
+        class='button'    >
+        Back
+    </a></center>
 
     <script src="./script.js"></script>
     <script>
-        document.getElementById('backButton').addEventListener('click', () => {
+        document.getElementById('button').addEventListener('click', () => {
             window.location.href = '/'; // Replace 'index.html' with the path to your homepage
         });
     </script>
