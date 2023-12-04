@@ -140,6 +140,17 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                     description: 'Couples test the strength of their relationship by surrounding themselves with attractive strangers on a tropical island.'
                 }
             };
+            case 'movie6':
+            return {
+                hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/bpk-tv/MTV_HD_Plus_voot_MOB/Fallback/master.m3u8',
+                movieDetails: {
+                    title: 'MTV HD',
+                    rating: '7.6',
+                    genre: 'Music Videos',
+                    duration: '24/7',
+                    description: 'live music channel'
+                }
+            };
         default:
             return {
                 hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/2105488/hd_akamai_iosmob_avc_24x7_bbhindi_day01/master.m3u8',
