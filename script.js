@@ -130,30 +130,14 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                 }
             };
         case 'movie5':
-            // Create a placeholder div for the Twitch embed
-            const twitchEmbedDiv = document.createElement('div');
-            twitchEmbedDiv.id = 'twitch-embed';
-            document.body.appendChild(twitchEmbedDiv);
-
-            // Create the iframe for Twitch
-            const twitchIframe = document.createElement('iframe');
-            twitchIframe.src = 'https://player.twitch.tv/?channel=arivumani12&parent=bb17tv.netlify.app/player.html?movie=movie5';
-            twitchIframe.frameBorder = 0;
-            twitchIframe.allowFullscreen = true;
-            twitchIframe.scrolling = 'no';
-            twitchIframe.height = 378;
-            twitchIframe.width = 620;
-            twitchEmbedDiv.appendChild(twitchIframe);
-
-            // Return the details for "movie5"
             return {
-                hlsStreamURL: '', // Leave it empty as Twitch Player handles this internally
+                hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/3846098/hd_akamai_iosmob_avc_24x7_temptation_day01/master.m3u8',
                 movieDetails: {
-                    title: 'Bigg Boss Tamil Live 24x7',
-                    rating: '4.0',
+                    title: 'Temptation Island Live',
+                    rating: '4.7',
                     genre: 'Reality TV',
                     duration: '24/7',
-                    description: 'Description for Bigg Boss Tamil Live 24x7.'
+                    description: 'Temptation Island Live.'
                 }
             };
         default:
