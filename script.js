@@ -131,7 +131,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
             };
         case 'movie5':
             return {
-                hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/3846098/hd_akamai_iosmob_avc_24x7_temptation_day01/master.m3u8',
+                hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/2106329/hd_akamai_iosmob_avc_temptationisland_day001/master.m3u8',
                 movieDetails: {
                     title: 'Temptation Island Live',
                     rating: '4.7',
