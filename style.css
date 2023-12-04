@@ -72,11 +72,9 @@ video {
     background-color: #e055a3;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
 media-player {
   --video-brand: rgb(124 58 237);
-  --video-font-family: 'Inter', sans-serif;
+  --video-font-family: 'poppins', sans-serif;
 }
 @keyframes blinking {
     from, to {
