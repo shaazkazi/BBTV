@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Update movie information on the player page
             updateMovieInformation(movieDetails);
+
+            // Add the "Live" text and red blinking dot
+            addLiveIndicator();
         });
         hls.attachMedia(video);
         window.hls = hls;
@@ -41,6 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update movie information on the player page
         updateMovieInformation(movieDetails);
+
+        // Add the "Live" text and red blinking dot
+        addLiveIndicator();
     }
 
     function updateQuality(newQuality) {
@@ -60,6 +66,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('duration').innerText = `Duration: ${details.duration}`;
         document.getElementById('movieDescription').innerText = details.description;
     }
+
+    function addLiveIndicator() {
+    const playerHeader = document.querySelector('.player-header');
+
+    // Create the "Live:" text
+    const liveText = document.createElement('span');
+    liveText.innerText = 'Live: ';
+    playerHeader.appendChild(liveText);
+
+    // Create the red blinking dot
+    const redDot = document.createElement('span');
+    redDot.classList.add('blinking');
+    redDot.innerHTML = '<svg height="10" width="10"><circle cx="5" cy="5" r="5" fill="white"></circle></svg>';
+    playerHeader.appendChild(redDot);
+}
 });
 
 function getHLSStreamURLAndDetailsForMovie(movieId) {
