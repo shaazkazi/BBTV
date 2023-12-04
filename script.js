@@ -90,7 +90,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                 hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/2105488/hd_akamai_iosmob_avc_24x7_bbhindi_day01/master.m3u8',
                 movieDetails: {
                     title: 'Bigg Boss Hindi Live 24x7',
-                    rating: '4.5',
+                    rating: '3.7',
                     genre: 'Reality TV',
                     duration: '24/7',
                     description: 'Isolated from the outside world, the contestants live together in a house under the live cameras that monitor their every move. They perform various tasks and avoid eviction to be declared a winner.'
@@ -101,7 +101,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                 hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/bpk-tv/Colors_HD_voot_MOB/Fallback/index.m3u8',
                 movieDetails: {
                     title: 'ColorsTV Hindi HD',
-                    rating: '4.2',
+                    rating: '3.7',
                     genre: 'Entertainment',
                     duration: '2h 30min',
                     description: 'Colors TV is an Indian general entertainment pay television channel owned by Viacom18. It was launched on 21 July 2008.[1] Its programming consists of family dramas, comedies, fantasy shows, youth-oriented reality shows, shows on crime, and television films.[2]'
@@ -112,7 +112,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                 hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/bpk-tv/Colors_Kannada_HD_voot_MOB/Fallback/index.m3u8',
                 movieDetails: {
                     title: 'ColorsTV Kannada HD',
-                    rating: '4.0',
+                    rating: '6.3',
                     genre: 'Entertainment',
                     duration: '2h 15min',
                     description: 'Colors Kannada (previously known as ETV Kannada), is an Indian general entertainment channel, owned by Viacom18 that primarily broadcasts Kannada language entertainment shows.'
@@ -123,7 +123,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                 hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/2101563/hd_akamai_iosmob_avc_24x7_bbkannada_day01/master.m3u8',
                 movieDetails: {
                     title: 'Bigg Boss Kannada Live 24x7',
-                    rating: '4.7',
+                    rating: '6.3',
                     genre: 'Reality TV',
                     duration: '24/7',
                     description: 'Bigg Boss Kannada is a reality show based on the Hindi show Bigg Boss which too was based on the original Dutch Big Brother. A number of contestants (known as "housemates") live in a purpose-built house and are isolated from the rest of the world.'
@@ -134,7 +134,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                 hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/2106329/hd_akamai_iosmob_avc_temptationisland_day001/master.m3u8',
                 movieDetails: {
                     title: 'Temptation Island Live',
-                    rating: '4.7',
+                    rating: '7.6',
                     genre: 'Reality TV',
                     duration: '24/7',
                     description: 'Couples test the strength of their relationship by surrounding themselves with attractive strangers on a tropical island.'
@@ -145,7 +145,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                 hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/2105488/hd_akamai_iosmob_avc_24x7_bbhindi_day01/master.m3u8',
                 movieDetails: {
                     title: 'Bigg Boss Hindi Live 24x7',
-                    rating: '4.5',
+                    rating: '3.7',
                     genre: 'Reality TV',
                     duration: '24/7',
                     description: 'Description for Bigg Boss Hindi Live 24x7.'
