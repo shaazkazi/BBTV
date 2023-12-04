@@ -137,7 +137,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
 
             // Create the iframe for Twitch
             const twitchIframe = document.createElement('iframe');
-            twitchIframe.src = 'https://player.twitch.tv/?channel=arivumani12&parent=https://bb17tv.netlify.app/';
+            twitchIframe.src = 'https://player.twitch.tv/?channel=arivumani12&parent=bb17tv.netlify.app/player.html?movie=movie5';
             twitchIframe.frameBorder = 0;
             twitchIframe.allowFullscreen = true;
             twitchIframe.scrolling = 'no';
