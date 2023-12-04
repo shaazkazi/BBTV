@@ -3,16 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>BBTV - Your Bigg Boss Destination</title>
     <link rel="icon" type="image/jpeg" href="logo.jpg">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <header>
-        <h1>BBTV - Your Bigg Boss Destination</h1>
+    <header class="header">
+        <a href="/" class="logo">Bigg Boss TV</a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="player.html?movie=movie1">BB Hindi Live</a></li>
+            <li><a href="player.html?movie=movie2">ColorsTV Hindi</a></li>
+            <li><a href="player.html?movie=movie3">ColorsTV Kannada</a></li>
+            <li><a href="player.html?movie=movie4">BB Kannada Live</a></li>
+            <li><a href="player.html?movie=movie5">Temptation Island Live</a></li>
+        </ul>
     </header>
-
+    <br>
+    <br>
+    <br>
+    <br>
+<div></div>
     <div class="movie-container">
         <div class="movie-card" onclick="openPlayer('movie1')">
             <img src="bb.webp" alt="Bigg Boss Live 24x7">

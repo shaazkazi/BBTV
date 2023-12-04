@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Player</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/jpeg" href="logo.jpg">
     <script src="https://cdn.plyr.io/3.6.4/plyr.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -14,6 +14,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="header">
+        <a href="/" class="logo">Bigg Boss TV</a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="player.html?movie=movie1">BB Hindi Live</a></li>
+            <li><a href="player.html?movie=movie2">ColorsTV Hindi</a></li>
+            <li><a href="player.html?movie=movie3">ColorsTV Kannada</a></li>
+            <li><a href="player.html?movie=movie4">BB Kannada Live</a></li>
+            <li><a href="player.html?movie=movie5">Temptation Island Live</a></li>
+        </ul>
+    </header>
+
     <div class="player-container">
         <div class="player-header">
             <!-- Live indicator will be added dynamically -->
