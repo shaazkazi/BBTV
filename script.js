@@ -93,7 +93,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                     rating: '4.5',
                     genre: 'Reality TV',
                     duration: '24/7',
-                    description: 'Description for Bigg Boss Hindi Live 24x7.'
+                    description: 'Isolated from the outside world, the contestants live together in a house under the live cameras that monitor their every move. They perform various tasks and avoid eviction to be declared a winner.'
                 }
             };
         case 'movie2':
@@ -104,7 +104,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                     rating: '4.2',
                     genre: 'Entertainment',
                     duration: '2h 30min',
-                    description: 'Description for ColorsTV Hindi HD.'
+                    description: 'Colors TV is an Indian general entertainment pay television channel owned by Viacom18. It was launched on 21 July 2008.[1] Its programming consists of family dramas, comedies, fantasy shows, youth-oriented reality shows, shows on crime, and television films.[2]'
                 }
             };
         case 'movie3':
@@ -115,7 +115,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                     rating: '4.0',
                     genre: 'Entertainment',
                     duration: '2h 15min',
-                    description: 'Description for ColorsTV Kannada HD.'
+                    description: 'Colors Kannada (previously known as ETV Kannada), is an Indian general entertainment channel, owned by Viacom18 that primarily broadcasts Kannada language entertainment shows.'
                 }
             };
         case 'movie4':
@@ -126,7 +126,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                     rating: '4.7',
                     genre: 'Reality TV',
                     duration: '24/7',
-                    description: 'Description for Bigg Boss Kannada Live 24x7.'
+                    description: 'Bigg Boss Kannada is a reality show based on the Hindi show Bigg Boss which too was based on the original Dutch Big Brother. A number of contestants (known as "housemates") live in a purpose-built house and are isolated from the rest of the world.'
                 }
             };
         case 'movie5':
@@ -137,7 +137,7 @@ function getHLSStreamURLAndDetailsForMovie(movieId) {
                     rating: '4.7',
                     genre: 'Reality TV',
                     duration: '24/7',
-                    description: 'Temptation Island Live.'
+                    description: 'Couples test the strength of their relationship by surrounding themselves with attractive strangers on a tropical island.'
                 }
             };
         default:
