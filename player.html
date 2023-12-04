@@ -1,3 +1,5 @@
+<!-- player.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,32 +9,44 @@
     <script src="https://cdn.plyr.io/3.6.4/plyr.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.4/plyr.css" />
-    <link rel="stylesheet" href="styles.css">
-    <link
-            href="https://fonts.googleapis.com/css2?family=poppins&display=swap"
-            rel="stylesheet"
-            type='text/css'
-        >
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <video id="videoPlayer" controls crossorigin>
-            <!-- Fallback content for browsers that don't support the video tag -->
-            Your browser does not support the video tag.
-        </video>
+    <div class="player-container">
+        <div class="player-header">
+            <h1 class="movie-title" id="movieTitle">Inception</h1>
+        </div>
+        <div class="container">
+            <video id="videoPlayer" controls crossorigin>
+                <!-- Fallback content for browsers that don't support the video tag -->
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="player-info">
+            <div class="movie-metadata">
+                <span class="rating" id="rating">Rating: 4.8</span>
+                <span class="genre" id="genre">Genre: Sci-Fi, Action</span>
+                <span class="duration" id="duration">Duration: 2h 28min</span>
+            </div>
+            <p class="movie-description" id="movieDescription">
+                Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state when the mind is at its most vulnerable.
+            </p>
+        </div>
+        <center><button id="backButton">Back</button></center>
     </div>
-    
-    <center><a
-        href="/"
-        class='button'    >
-        Back
-    </a></center>
 
     <script src="./script.js"></script>
     <script>
-        document.getElementById('button').addEventListener('click', () => {
+        document.getElementById('backButton').addEventListener('click', () => {
             window.location.href = '/'; // Replace 'index.html' with the path to your homepage
         });
+
+        // Replace these values with the actual data for each movie
+        document.getElementById('movieTitle').innerText = "Bigg Boss Hindi Live 24x7";
+        document.getElementById('rating').innerText = "Rating: 4.5";
+        document.getElementById('genre').innerText = "Genre: Reality TV";
+        document.getElementById('duration').innerText = "Duration: 24/7";
+        document.getElementById('movieDescription').innerText = "Description for Bigg Boss Hindi Live 24x7.";
     </script>
 </body>
 </html>

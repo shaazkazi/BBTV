@@ -4,30 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BBTV</title>
-    <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="logo.jpg">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+    <header>
+        <h1>BBTV - Your Bigg Boss Destination</h1>
+    </header>
+
     <div class="movie-container">
         <div class="movie-card" onclick="openPlayer('movie1')">
             <img src="logo.jpg" alt="Movie 1">
-            <h3>Bigg Boss Live 24x7</h3>
+            <div class="overlay">
+                <h3>Bigg Boss Live 24x7</h3>
+            </div>
         </div>
         <div class="movie-card" onclick="openPlayer('movie2')">
             <img src="COLORSTVHD.jpg" alt="Movie 2">
-            <h3>ColorsTV HD</h3>
+            <div class="overlay">
+                <h3>ColorsTV HD</h3>
+            </div>
         </div>
         <div class="movie-card" onclick="openPlayer('movie3')">
             <img src="COLORSKA.jpg" alt="Movie 3">
-            <h3>ColorsTV Kannada HD</h3>
+            <div class="overlay">
+                <h3>ColorsTV Kannada HD</h3>
+            </div>
         </div>
         <div class="movie-card" onclick="openPlayer('movie4')">
             <img src="BBKA.jpg" alt="Movie 4">
-            <h3>Bigg Boss Kannada Live 24x7</h3>
+            <div class="overlay">
+                <h3>Bigg Boss Kannada Live 24x7</h3>
+            </div>
         </div>
-        <!-- Add more movie cards as needed -->
     </div>
 
     <script>
