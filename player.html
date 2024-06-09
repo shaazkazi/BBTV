@@ -2,15 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playing Live - BBTV</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/jpeg" href="logo.jpg">
-    <script src="https://cdn.plyr.io/3.6.4/plyr.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.4/plyr.css" />
+    <title>JW Player DASH and HLS Stream</title>
+    <!-- Include JW Player library -->
+    <script src='https://ssl.p.jwpcdn.com/player/v/8.6.2/jwplayer.js'></script>
+    <script>jwplayer.key = '64HPbvSQorQcd52B8XFuhMtEoitbvY/EXJmMBfKcXZQU2Rnn';</script>
+    <style type="text/css" media="all">
+        html, body { padding: 0; margin: 0; height: 100%; }
+        #player { width: 100% !important; height: 100% !important; overflow: hidden; background-color: #000; }
+    </style>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
