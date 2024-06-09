@@ -1,166 +1,167 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('videoPlayer');
+    const video = document.getElementById('jwPlayer');
+    const sourceSelect = document.getElementById('sourceSelector');
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const movieId = urlParams.get('movie');
-    
-    // Use the movieId to dynamically set the HLS stream URL and get movie details
-    const { hlsStreamURL, movieDetails } = getHLSStreamURLAndDetailsForMovie(movieId);
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-    const defaultOptions = {};
+    // Use the movieId to dynamically set the JW Player video source
+    const { videoSources, movieDetails, availableQualities, sourceNames } = getVideoSourceAndDetailsForMovie(movieId);
 
-    if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(hlsStreamURL);
+    // Set the highest quality as the default quality
+    const defaultQuality = Math.max(...availableQualities);
 
-        hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
-            const availableQualities = hls.levels.map((l) => l.height);
+    // Check if it's iOS and set playsinline attribute
+    if (isIOS) {
+        video.setAttribute('playsinline', '');
+        video.setAttribute('controls', '');
+    }
 
-            // Add new qualities to option
-            defaultOptions.quality = {
-                default: availableQualities[0],
-                options: availableQualities,
-                // this ensures Plyr to use Hls to update quality level
-                forced: true,        
-                onChange: (e) => updateQuality(e),
+    // Initialize JW Player
+    const playerInstance = jwplayer("jwPlayer").setup({
+        playlist: [{
+            sources: [
+                {
+                    file: videoSources[0], // Default source, should be a DASH MPD file
+                    type: 'dash'
+                },
+                {
+                    file: videoSources[1], // Additional source, should be an HLS M3U8 file
+                    type: 'hls'
+                }
+            ]
+        }],
+        width: "100%",
+        aspectratio: "16:9",
+        autostart: true,
+        controls: true,
+        mute: false,
+        skin: {
+            controlbar: {
+                background: "rgba(255, 255, 255, 0.0)", // Light grey background
+                icons: "#e3ca0b", // Dark grey icons
+                iconsActive: "#fcba03", // Golden yellow for active icons
+                text: "#fff" // Dark grey text
+            },
+            menus: {
+                background: "#000000", // Bright blue background
+                text: "#ffffff", // White text
+                textActive: "#e3ca0b" // Pink text for active state
+            },
+            timeslider: {
+                progress: "#e3ca0b", // Bright green progress
+                rail: "#ff66b2" // Light grey rail
+            },
+            tooltips: {
+                background: "#e3ca0b", // Orange tooltip background
+                text: "#fff" // Dark grey tooltip text
             }
+        },
+        qualityLabel: {
+            mobile: true,
+            label: '1080p', // or '720p' (default quality)
+            item: availableQualities
+        }
+    });
 
-            // Initialize here
-            const player = new Plyr(video, defaultOptions);
+    // Update movie information on the player page
+    updateMovieInformation(movieDetails);
 
-            // Update movie information on the player page
-            updateMovieInformation(movieDetails);
+    // Add the "Live" text and red blinking dot
+    addLiveIndicator();
 
-            // Add the "Live" text and red blinking dot
-            addLiveIndicator();
+    document.getElementById('backButton').addEventListener('click', () => {
+        window.location.href = '/';
+    });
+
+    // Check if source selection dropdown is available
+    if (sourceSelect) {
+        // Update player source when chosen
+        sourceSelect.addEventListener('change', () => {
+            const selectedSourceIndex = parseInt(sourceSelect.value, 10);
+            updatePlayerSource(playerInstance, videoSources[selectedSourceIndex]);
         });
-        hls.attachMedia(video);
-        window.hls = hls;
-    } else {
-        // default options with no quality update in case Hls is not supported
-        const player = new Plyr(video, defaultOptions);
 
-        // Update movie information on the player page
-        updateMovieInformation(movieDetails);
-
-        // Add the "Live" text and red blinking dot
-        addLiveIndicator();
-    }
-
-    function updateQuality(newQuality) {
-        window.hls.levels.forEach((level, levelIndex) => {
-            if (level.height === newQuality) {
-                console.log("Found quality match with " + newQuality);
-                window.hls.currentLevel = levelIndex;
-            }
-        });
-    }
-
-    function updateMovieInformation(details) {
-        // Update movie details on the player page
-        document.getElementById('movieTitle').innerText = details.title;
-        document.getElementById('rating').innerText = `Rating: ${details.rating}`;
-        document.getElementById('genre').innerText = `Genre: ${details.genre}`;
-        document.getElementById('duration').innerText = `Duration: ${details.duration}`;
-        document.getElementById('movieDescription').innerText = details.description;
-    }
-
-    function addLiveIndicator() {
-        const playerHeader = document.querySelector('.player-header');
-
-        // Create the "Live:" text
-        const liveText = document.createElement('span');
-        liveText.innerText = 'Live: ';
-        playerHeader.appendChild(liveText);
-
-        // Create the red blinking dot
-        const redDot = document.createElement('span');
-        redDot.classList.add('blinking');
-        redDot.innerHTML = '<svg height="10" width="10"><circle cx="5" cy="5" r="5" fill="white"></circle></svg>';
-        playerHeader.appendChild(redDot);
-    }
+        // Populate source selector dropdown with source names
+        for (let i = 0; i < sourceNames.length; i++) {
+            const option = document.createElement('option');
+            option.value = i.toString();
+            option.textContent = sourceNames[i];
+            sourceSelect.appendChild(option);
+        }
+    }    
 });
 
-function getHLSStreamURLAndDetailsForMovie(movieId) {
+function updateMovieInformation(details) {
+    // Update movie details on the player page
+    document.getElementById('movieTitle').innerText = details.title;
+    document.getElementById('pageTitle').innerText = details.title + ' - BBTV';
+    document.getElementById('rating').innerText = `Rating: ${details.rating}`;
+    document.getElementById('genre').innerText = `Genre: ${details.genre}`;
+    document.getElementById('duration').innerText = `Duration: ${details.duration}`;
+    document.getElementById('movieDescription').innerText = details.description;
+}
+
+function addLiveIndicator() {
+    const playerHeader = document.querySelector('.player-header');
+
+    // Create the "Live:" text
+    const liveText = document.createElement('span');
+    liveText.innerText = 'Live: ';
+    playerHeader.appendChild(liveText);
+
+    // Create the red blinking dot
+    const redDot = document.createElement('span');
+    redDot.classList.add('blinking');
+    redDot.innerHTML = '<svg height="10" width="10"><circle cx="5" cy="5" r="5" fill="red"></circle></svg>';
+    playerHeader.appendChild(redDot);
+}
+
+function getVideoSourceAndDetailsForMovie(movieId) {
     switch (movieId) {
         case 'movie1':
             return {
-                hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/2105488/hd_akamai_iosmob_avc_24x7_bbhindi_day01/master.m3u8',
+                videoSources: [
+                    'https://58a48a11e736a.streamlock.net/uploads/jio_1437252/30e5981b030f79f1b7cc2c89cdcfe7ed/master.m3u8',
+                    'https://aba5sdmaaaaaaaamkycwliah6buj4.otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/tgcrfjcgia/out/v1/7296f026409c4e9ba8844a238628f9ad/cenc.mpd?|drmScheme=clearkey&drmLicense=d1badeadb11f16bbd0ad7d47914d939e:bd52d185d3537c4c1759db6d66f90f31',
+                    'http://177.53.153.20:8001/play/a01v/index.m3u8'
+                ],
+                sourceNames: ['HLS Stream 1', 'DASH Stream 1', 'HLS Stream 2'],
                 movieDetails: {
-                    title: 'Bigg Boss Hindi Live 24x7',
-                    rating: '3.7',
-                    genre: 'Reality TV',
-                    duration: '24/7',
-                    description: 'Isolated from the outside world, the contestants live together in a house under the live cameras that monitor their every move. They perform various tasks and avoid eviction to be declared a winner.'
-                }
-            };
-        case 'movie2':
-            return {
-                hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/bpk-tv/Colors_HD_voot_MOB/Fallback/index.m3u8',
-                movieDetails: {
-                    title: 'ColorsTV Hindi HD',
-                    rating: '3.7',
-                    genre: 'Entertainment',
-                    duration: '2h 30min',
-                    description: 'Colors TV is an Indian general entertainment pay television channel owned by Viacom18. It was launched on 21 July 2008.[1] Its programming consists of family dramas, comedies, fantasy shows, youth-oriented reality shows, shows on crime, and television films.[2]'
-                }
-            };
-        case 'movie3':
-            return {
-                hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/bpk-tv/Colors_Kannada_HD_voot_MOB/Fallback/index.m3u8',
-                movieDetails: {
-                    title: 'ColorsTV Kannada HD',
-                    rating: '6.3',
-                    genre: 'Entertainment',
-                    duration: '2h 15min',
-                    description: 'Colors Kannada (previously known as ETV Kannada), is an Indian general entertainment channel, owned by Viacom18 that primarily broadcasts Kannada language entertainment shows.'
-                }
-            };
-        case 'movie4':
-            return {
-                hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/2101563/hd_akamai_iosmob_avc_24x7_bbkannada_day01/master.m3u8',
-                movieDetails: {
-                    title: 'Bigg Boss Kannada Live 24x7',
-                    rating: '6.3',
-                    genre: 'Reality TV',
-                    duration: '24/7',
-                    description: 'Bigg Boss Kannada is a reality show based on the Hindi show Bigg Boss which too was based on the original Dutch Big Brother. A number of contestants (known as "housemates") live in a purpose-built house and are isolated from the rest of the world.'
-                }
-            };
-        case 'movie5':
-            return {
-                hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/2106329/hd_akamai_iosmob_avc_temptationisland_day001/master.m3u8',
-                movieDetails: {
-                    title: 'Temptation Island Live',
+                    title: 'English TV',
                     rating: '7.6',
-                    genre: 'Reality TV',
-                    duration: '24/7',
-                    description: 'Couples test the strength of their relationship by surrounding themselves with attractive strangers on a tropical island.'
-                }
-            };
-            case 'movie6':
-            return {
-                hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/bpk-tv/MTV_HD_Plus_voot_MOB/Fallback/master.m3u8',
-                movieDetails: {
-                    title: 'MTV HD',
-                    rating: '7.6',
-                    genre: 'Music Videos',
-                    duration: '24/7',
-                    description: 'live music channel'
-                }
+                    genre: 'Entertainment',
+                    duration: 'Live',
+                    description: 'Select Channels from Dropdown List'
+                },
+                availableQualities: [144, 240, 360, 480, 720, 1080] // Define available qualities for this video
             };
         default:
             return {
-                hlsStreamURL: 'https://prod-ent-live-gm.jiocinema.com/hls/live/2105488/hd_akamai_iosmob_avc_24x7_bbhindi_day01/master.m3u8',
+                videoSources: [],
+                sourceNames: [],
                 movieDetails: {
-                    title: 'Bigg Boss Hindi Live 24x7',
-                    rating: '3.7',
-                    genre: 'Reality TV',
-                    duration: '24/7',
-                    description: 'Description for Bigg Boss Hindi Live 24x7.'
-                }
+                    title: 'Unknown',
+                    rating: '',
+                    genre: '',
+                    duration: '',
+                    description: ''
+                },
+                availableQualities: []
             };
     }
+}
+
+function updatePlayerSource(playerInstance, source) {
+    // Pause the player
+    playerInstance.pause();
+
+    // Load the new source
+    playerInstance.load({
+        file: source
+    });
+
+    // Play the player
+    playerInstance.play();
 }
