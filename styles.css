@@ -1,105 +1,611 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'poppins';
-    background: #111 url('background.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
+	margin: 0;
+	padding: 0;
+	font-family: 'poppins';
+	background-color: #fcba03;
 }
 
-header {
-    background-color: #000;
-    color: #ff66b2;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 1em;
+.player-container {
+	max-width: 800px;
+	margin: 80px auto 0;
+    /* Add top margin to give space for the header */
+	background-color: #fff;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	border: solid;
+	border-color: #e055a3;
 }
 
-.movie-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    justify-content: center;
-    padding: 20px;
+.player-header {
+	background-color: #ff66b2;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
 }
 
-.movie-card {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    transition: transform 0.3s ease-in-out;
+.movie-title {
+	margin: 0;
+	font-size: 32px;
 }
 
-.movie-card img {
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    object-fit: cover;
+.container {
+	position: relative;
 }
 
-.overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
-    color: #fff;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+video {
+	width: 100%;
+	display: block;
+	border-radius: 0 0 12px 12px;
 }
 
-.movie-card:hover {
-    transform: scale(1.05);
+.player-info {
+	padding: 20px;
 }
 
-.movie-card:hover .overlay {
-    opacity: 1;
+.movie-metadata {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
 }
 
-.overlay h3 {
-    margin: 0;
-    font-size: 1.5em;
+.movie-metadata span {
+	font-size: 16px;
 }
 
-@media only screen and (max-width: 600px) {
-    .movie-container {
-        grid-template-columns: 1fr;
-    }
+.movie-description {
+	color: #333;
+	line-height: 1.6;
+	margin-top: 10px;
 }
+
+#backButton {
+	margin-top: 20px;
+	background-color: #ff66b2;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background-color 0.3s ease-in-out;
+}
+
+#backButton:hover {
+	background-color: #e055a3;
+}
+
+media-player {
+	--video-brand: rgb(124 58 237);
+	--video-font-family: 'poppins', sans-serif;
+}
+
+@keyframes blinking {
+	from, to {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+}
+
+.blinking {
+	-webkit-animation: 1s blinking ease infinite;
+	-moz-animation: 1s blinking ease infinite;
+	-ms-animation: 1s blinking ease infinite;
+	-o-animation: 1s blinking ease infinite;
+	animation: 1s blinking ease infinite;
+}
+
 /* Add this style to ensure the header is fixed at the top */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'poppins';
-    background-color: #3725A4;
+	margin: 0;
+	padding: 0;
+	font-family: 'poppins';
+	background-color: #fcba03;
 }
 
 .header {
-    background-color: #fff;
-    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
-    position: fixed;
-    width: 100%;
-    z-index: 3;
-    top: 0; /* Ensure it is fixed at the top */
+	background-color: #6914a1;
+	box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, .1);
+	position: fixed;
+	width: 100%;
+	z-index: 3;
+	top: 0;
+    /* Ensure it is fixed at the top */
+	color: #fff;
 }
+
+.header ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+.header li a {
+	display: block;
+	padding: 0px 10px;
+	border-right: 1px solid #f4f4f4;
+	text-decoration: none;
+}
+
+.header li a:hover,
+.header .menu-btn:hover {
+	background-color: #f4f4f4;
+}
+
+.header .logo {
+	display: block;
+	float: left;
+	font-size: 2em;
+	padding: 10px 20px;
+	text-decoration: none;
+	color: #fff;
+}
+
+.header .menu {
+	clear: both;
+	max-height: 0;
+	transition: max-height .2s ease-out;
+}
+
+.header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: none;
+    padding: 28px 20px;
+    position: relative;
+    -webkit-user-select: none; /* Add this line for Safari support */
+    user-select: none;
+}
+
+.header .menu-icon .navicon {
+	background: #333;
+	display: block;
+	height: 2px;
+	position: relative;
+	transition: background .2s ease-out;
+	width: 18px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+	background: #333;
+	content: '';
+	display: block;
+	height: 100%;
+	position: absolute;
+	transition: all .2s ease-out;
+	width: 100%;
+}
+
+.header .menu-icon .navicon:before {
+	top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+	top: -5px;
+}
+
+.header .menu-btn {
+	display: none;
+}
+
+.header .menu-btn:checked~.menu {
+	max-height: 240px;
+}
+
+.header .menu-btn:checked~.menu-icon .navicon {
+	background: transparent;
+}
+
+.header .menu-btn:checked~.menu-icon .navicon:before {
+	transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked~.menu-icon .navicon:after {
+	transform: rotate(45deg);
+}
+
+.header .menu-btn:checked~.menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked~.menu-icon:not(.steps) .navicon:after {
+	top: 0;
+}
+
+@media (min-width: 48em) {
+	.header li {
+		float: left;
+	}
+
+	.header li a {
+		padding: 20px 30px;
+	}
+
+	.header .menu {
+		clear: none;
+		float: right;
+		max-height: none;
+	}
+
+	.header .menu-icon {
+		display: none;
+	}
+}
+
+.player-container {
+	max-width: 800px;
+	margin: 80px auto 0;
+    /* Add top margin to give space for the header */
+	background-color: #fff;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.player-header {
+	background-color: #ff66b2;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
+}
+
+.movie-title {
+	margin: 0;
+	font-size: 20px;
+}
+
+.container {
+	position: relative;
+}
+
+video {
+	width: 100%;
+	display: block;
+	border-radius: 0 0 5px 5px;
+}
+
+.player-info {
+	padding: 20px;
+}
+
+.movie-metadata {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.movie-metadata span {
+	font-size: 16px;
+}
+
+.movie-description {
+	color: #fff;
+	line-height: 1.6;
+	margin-top: 10px;
+}
+
+#backButton {
+	margin-top: 20px;
+	background-color: #ff66b2;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background-color 0.3s ease-in-out;
+}
+
+#backButton:hover {
+	background-color: #e057a5;
+}
+
+media-player {
+	--video-brand: rgb(124 58 237);
+	--video-font-family: 'poppins', sans-serif;
+}
+
+@keyframes blinking {
+	from, to {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+}
+
+.blinking {
+	-webkit-animation: 1s blinking ease infinite;
+	-moz-animation: 1s blinking ease infinite;
+	-ms-animation: 1s blinking ease infinite;
+	-o-animation: 1s blinking ease infinite;
+	animation: 1s blinking ease infinite;
+}
+/* Add this media query to adjust the burger icon in mobile view */
+@media (max-width: 48em) {
+	.header .menu-icon {
+		float: right;
+		padding: 28px 20px;
+	}
+}
+/* Add this to set the hamburger color to white */
+.header .menu-icon .navicon,
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+	background: #fff;
+}
+
+/* ... (Your existing styles) ... */
+
+/* Add this style to ensure the header is fixed at the top */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+    /* Correct the font family name */
+	background-color: #fcba03;
+}
+
+.header {
+	background-color: #6914a1;
+	box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, .1);
+	position: fixed;
+	width: 100%;
+	z-index: 3;
+	top: 0;
+	color: #fff;
+	overflow: hidden;
+    /* Add overflow: hidden to fix the issue */;
+}
+
+.header ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+/* ... (Your existing styles) ... */
+
+@media (min-width: 48em) {
+	.header li {
+		float: left;
+	}
+
+	.header li a {
+		padding: 10px 20px;
+	}
+
+	.header .menu {
+		clear: none;
+		float: right;
+		max-height: none;
+	}
+
+	.header .menu-icon {
+		display: none;
+	}
+}
+
+.player-container {
+	max-width: 800px;
+	margin: 80px auto 0;
+    /* Add top margin to give space for the header */
+	background-color: #ffffff;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+/* Add this media query to adjust the burger icon in mobile view */
+@media (max-width: 48em) {
+	.header .menu-icon {
+		float: right;
+		padding: 28px 20px;
+	}
+}
+/* Add this to set the hamburger color to white */
+.header .menu-icon .navicon,
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+	background: #fff;
+}
+
+.header {
+	margin: 0;
+	padding: 2px;
+	body {
+        margin: 0;
+	padding: 0;
+	font-family: 'poppins';
+	background-color: #3725A4;
+	color: #fff;
+}
+
+@media (min-width: 48em) {
+	.header li {
+		float: left;
+		margin: 0;
+            /* Remove the default margin */;
+	}
+
+	.header li a {
+		padding: 20px 15px;
+            /* Adjust the padding */
+		border-right: 1px solid #f4f4f4;
+		text-decoration: none;
+	}
+
+	.header .menu {
+		clear: none;
+		float: right;
+		max-height: none;
+	}
+
+	.header .menu-icon {
+		display: none;
+	}
+}
+}
+/* Style for the source selector dropdown */
+#sourceSelector {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background: #e057a5;
+	color: #fff;
+	padding: 10px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	outline: none;
+	width: 200px;
+ /* Adjust the width as needed */;
+}
+
+#sourceSelector option {
+	background: #e057a5;
+	color: #fff;
+}
+
+/* Add some styles to make the dropdown arrow colorful */
+#sourceSelector::-ms-expand {
+	display: none;
+}
+
+#sourceSelector::after {
+	content: '\25BC';
+	color: #fff;
+	margin-right: 10px;
+}
+
+/* Style for the source selector container */
+.source-selector-container {
+	margin-top: 20px;
+	text-align: center;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px purple;
+	border-radius: 10px;
+	background: #fcba03;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #6914a1;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #6914a1;
+}
+/* Add this to your existing CSS styles */
+.dropdown-wrapper {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-icon {
+	position: absolute;
+	top: 50%;
+	right: 5px;
+ /* Adjust the right distance as needed */
+	transform: translateY(-50%);
+	pointer-events: none;
+ /* Ensure the icon doesn't interfere with dropdown clicks */
+    fill: #6914a1; /* Change the fill color as needed */
+    width: 20px; /* Adjust the width as needed to make the icon smaller */
+    height: 20px; /* Adjust the height as needed to make the icon smaller */
+    color: #6914a1;
+}
+#backButton {
+    background-color: #ff66b2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px; /* Adjust the top margin as needed */
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#backButton svg {
+    width: 20px; /* Adjust the size of the arrow icon */
+    height: 20px;
+    margin-right: 5px; /* Adjust the distance between the icon and text */
+}
+
+#backButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #6914a133; /* Change the overlay color and opacity */
+    transition: left 0.3s ease-in-out;
+}
+
+#backButton:hover::before {
+    left: 100%;
+}
+
+#backButton:hover {
+    background-color: #e057a5;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/* Dropdown options border color change on hover */
+#sourceSelector option:hover,
+#sourceSelector option:focus {
+    border-color: #e057a5;
+}
+/* Dropdown options style */
+#sourceSelector option:hover {
+    background-color: #e057a5;
+    color: #fff;
+}
+/* Dropdown border color change on hover */
+#sourceSelector:hover,
+#sourceSelector:focus {
+    border-color: #e057a5;
+}
+/* Common Styles */
 body {
     margin: 0;
     padding: 0;
-    font-family: 'poppins';
-    background-color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fcba03;
 }
 
+/* Header Styles */
 .header {
     background-color: #6914a1;
-    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, .1);
     position: fixed;
     width: 100%;
     z-index: 3;
+    top: 0;
+    color: #fff;
+    overflow: hidden;
 }
 
 .header ul {
@@ -110,132 +616,65 @@ body {
     background-color: #fff;
 }
 
-.header li a {
-    display: block;
-    padding: 10px 20px;
-    border-right: 1px solid #f4f4f4;
-    text-decoration: none;
-}
+/* ... (Your other header styles) ... */
 
-.header li a:hover,
-.header .menu-btn:hover {
-    background-color: #f4f4f4;
-}
-
-.header .logo {
-    display: block;
-    float: left;
-    font-size: 2em;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #fff;
-}
-
-.header .menu {
-    clear: both;
-    max-height: 0;
-    transition: max-height .2s ease-out;
-}
-
-.header .menu-icon {
-    cursor: pointer;
-    display: inline-block;
-    float: none;
-    padding: 28px 20px;
-    position: relative;
-    user-select: none;
-}
-
-.header .menu-icon .navicon {
-    background: #ffffff;
-    display: block;
-    height: 2px;
-    position: relative;
-    transition: background .2s ease-out;
-    width: 18px;
-}
-
-.header .menu-icon .navicon:before,
-.header .menu-icon .navicon:after {
-    background: #333;
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    transition: all .2s ease-out;
-    width: 100%;
-}
-
-.header .menu-icon .navicon:before {
-    top: 5px;
-}
-
-.header .menu-icon .navicon:after {
-    top: -5px;
-}
-
-.header .menu-btn {
-    display: none;
-}
-
-.header .menu-btn:checked ~ .menu {
-    max-height: 240px;
-}
-
-.header .menu-btn:checked ~ .menu-icon .navicon {
-    background: transparent;
-}
-
-.header .menu-btn:checked ~ .menu-icon .navicon:before {
-    transform: rotate(-45deg);
-}
-
-.header .menu-btn:checked ~ .menu-icon .navicon:after {
-    transform: rotate(45deg);
-}
-
-.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
-.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
-    top: 0;
-}
-
-@media (min-width: 48em) {
-    .header li {
-        float: left;
-    }
-    .header li a {
-        padding: 20px 30px;
-    }
-    .header .menu {
-        clear: none;
-        float: right;
-        max-height: none;
-    }
-    .header .menu-icon {
-        display: none;
-    }
-}
-
+/* Player Styles */
 .player-container {
     max-width: 800px;
-    margin: 80px auto 0; /* Add top margin to give space for the header */
-    background-color: #ffffff;
+    margin: 80px auto 0;
+    background: #0f3854;
+    background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
+    background-size: 100%;;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-/* Add this media query to adjust the burger icon in mobile view */
-@media (max-width: 48em) {
-    .header .menu-icon {
-        float: right;
-        padding: 28px 20px;
-    }
-}
-/* Add this to set the hamburger color to white */
-.header .menu-icon .navicon,
-.header .menu-icon .navicon:before,
-.header .menu-icon .navicon:after {
-    background: #fff;
+	color: #fff;
 }
 
+/* ... (Your other player styles) ... */
 
+/* Source Selector Styles */
+#sourceSelector {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #e057a5;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    width: 200px;
+}
+
+/* ... (Your other source selector styles) ... */
+
+/* Scrollbar Styles */
+/* ... (Your scrollbar styles) ... */
+
+/* Dropdown Icon Styles */
+.dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    fill: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
+    width: 20px;
+    height: 20px;
+    color: #0f3854;
+}
+
+/* ... (Your other styles) ... */
+body {
+    background: #0f3854;
+    background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
+    background-size: 100%;
+}
