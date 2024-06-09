@@ -1,167 +1,105 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('jwPlayer');
-    const sourceSelect = document.getElementById('sourceSelector');
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const movieId = urlParams.get('movie');
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+<!-- player.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6914a1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#6914a1">
+    <title id="pageTitle">Playing Live - L!VE TV</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#6914a1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+<link href="apple_splash_2048.png" sizes="2048x2732" rel="apple-touch-startup-image" />
+<link href="apple_splash_1668.png" sizes="1668x2224" rel="apple-touch-startup-image" />
+<link href="apple_splash_1536.png" sizes="1536x2048" rel="apple-touch-startup-image" />
+<link href="apple_splash_1125.png" sizes="1125x2436" rel="apple-touch-startup-image" />
+<link href="apple_splash_1242.png" sizes="1242x2208" rel="apple-touch-startup-image" />
+<link href="apple_splash_750.png" sizes="750x1334" rel="apple-touch-startup-image" />
+<link href="apple_splash_640.png" sizes="640x1136" rel="apple-touch-startup-image" />
 
-    // Use the movieId to dynamically set the JW Player video source
-    const { videoSources, movieDetails, availableQualities, sourceNames } = getVideoSourceAndDetailsForMovie(movieId);
+    <!-- Include JW Player library -->
+    <script src='https://ssl.p.jwpcdn.com/player/v/8.6.2/jwplayer.js'></script>
+    <script>jwplayer.key = '64HPbvSQorQcd52B8XFuhMtEoitbvY/EXJmMBfKcXZQU2Rnn';</script>
+    <style type="text/css" media="all">
+            html,body{padding:0;margin:0;height:100%}
+            #player{width:100%!important;height:100%!important;overflow:hidden;background-color:#000}
+        </style>
+    <title>BBTV - Your Bigg Boss Destination</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <a href="/" class="logo">
+            <img src="images/logotv.png" alt="Logo">
+        </a>
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="player.html?movie=movie1">BB Hindi Live</a></li>
+            <li><a href="player.html?movie=movie2">ColorsTV Hindi</a></li>
+            <li><a href="player.html?movie=movie3">ColorsTV Kannada</a></li>
+            <li><a href="player.html?movie=movie4">BB Kannada Live</a></li>
+            <li><a href="player.html?movie=movie5">Temptation Island Live</a></li>
+            <li><a href="player.html?movie=movie6">MTV HD</a></li>
+            <li><a href="player.html?movie=movie7">YRF Music</a></li>
+            <li><a href="player.html?movie=movie8">Zee Kannada</a></li>
+        </ul>
+    </header>
+    <br>
+    <br>
+    <div class="player-container">
 
-    // Set the highest quality as the default quality
-    const defaultQuality = Math.max(...availableQualities);
+        <div class="container">
+            <!-- JW Player will be initialized here -->
 
-    // Check if it's iOS and set playsinline attribute
-    if (isIOS) {
-        video.setAttribute('playsinline', '');
-        video.setAttribute('controls', '');
-    }
+            <div id="jwPlayer"></div>
+        </div>
+<div class="player-header">
+            <!-- Live indicator will be added dynamically -->
+            <h1 class="movie-title" id="movieTitle">Inception</h1>
+        </div>
+       <div class="source-selector-container">
+    <label for="sourceSelector">Select Source:</label>
+    <div class="dropdown-wrapper">
+        <select id="sourceSelector" onchange="changeVideoSource()">
+            <!-- ... Your existing options ... -->
+        </select>
+        <!-- Add SVG icon for dropdown -->
+        <svg class="dropdown-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M7 10l5 5 5-5z"/>
+        </svg>
+    </div>
+</div>
+<hr>
+        <div class="player-info">
+            <div class="movie-metadata">
+                <span class="rating" id="rating">Rating: 4.8</span>
+                <span class="genre" id="genre">Genre: Sci-Fi, Action</span>
+                <span class="duration" id="duration">Duration: 2h 28min</span>
+            </div>
 
-    // Initialize JW Player
-    const playerInstance = jwplayer("jwPlayer").setup({
-        playlist: [{
-            sources: [
-                {
-                    file: videoSources[0], // Default source, should be a DASH MPD file
-                    type: 'dash'
-                },
-                {
-                    file: videoSources[1], // Additional source, should be an HLS M3U8 file
-                    type: 'hls'
-                }
-            ]
-        }],
-        width: "100%",
-        aspectratio: "16:9",
-        autostart: true,
-        controls: true,
-        mute: false,
-        skin: {
-            controlbar: {
-                background: "rgba(255, 255, 255, 0.0)", // Light grey background
-                icons: "#e3ca0b", // Dark grey icons
-                iconsActive: "#fcba03", // Golden yellow for active icons
-                text: "#fff" // Dark grey text
-            },
-            menus: {
-                background: "#000000", // Bright blue background
-                text: "#ffffff", // White text
-                textActive: "#e3ca0b" // Pink text for active state
-            },
-            timeslider: {
-                progress: "#e3ca0b", // Bright green progress
-                rail: "#ff66b2" // Light grey rail
-            },
-            tooltips: {
-                background: "#e3ca0b", // Orange tooltip background
-                text: "#fff" // Dark grey tooltip text
-            }
-        },
-        qualityLabel: {
-            mobile: true,
-            label: '1080p', // or '720p' (default quality)
-            item: availableQualities
-        }
-    });
-
-    // Update movie information on the player page
-    updateMovieInformation(movieDetails);
-
-    // Add the "Live" text and red blinking dot
-    addLiveIndicator();
-
-    document.getElementById('backButton').addEventListener('click', () => {
-        window.location.href = '/';
-    });
-
-    // Check if source selection dropdown is available
-    if (sourceSelect) {
-        // Update player source when chosen
-        sourceSelect.addEventListener('change', () => {
-            const selectedSourceIndex = parseInt(sourceSelect.value, 10);
-            updatePlayerSource(playerInstance, videoSources[selectedSourceIndex]);
-        });
-
-        // Populate source selector dropdown with source names
-        for (let i = 0; i < sourceNames.length; i++) {
-            const option = document.createElement('option');
-            option.value = i.toString();
-            option.textContent = sourceNames[i];
-            sourceSelect.appendChild(option);
-        }
-    }    
-});
-
-function updateMovieInformation(details) {
-    // Update movie details on the player page
-    document.getElementById('movieTitle').innerText = details.title;
-    document.getElementById('pageTitle').innerText = details.title + ' - BBTV';
-    document.getElementById('rating').innerText = `Rating: ${details.rating}`;
-    document.getElementById('genre').innerText = `Genre: ${details.genre}`;
-    document.getElementById('duration').innerText = `Duration: ${details.duration}`;
-    document.getElementById('movieDescription').innerText = details.description;
-}
-
-function addLiveIndicator() {
-    const playerHeader = document.querySelector('.player-header');
-
-    // Create the "Live:" text
-    const liveText = document.createElement('span');
-    liveText.innerText = 'Live: ';
-    playerHeader.appendChild(liveText);
-
-    // Create the red blinking dot
-    const redDot = document.createElement('span');
-    redDot.classList.add('blinking');
-    redDot.innerHTML = '<svg height="10" width="10"><circle cx="5" cy="5" r="5" fill="red"></circle></svg>';
-    playerHeader.appendChild(redDot);
-}
-
-function getVideoSourceAndDetailsForMovie(movieId) {
-    switch (movieId) {
-        case 'movie1':
-            return {
-                videoSources: [
-                    'https://58a48a11e736a.streamlock.net/uploads/jio_1437252/30e5981b030f79f1b7cc2c89cdcfe7ed/master.m3u8',
-                    'https://aba5sdmaaaaaaaamkycwliah6buj4.otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/tgcrfjcgia/out/v1/7296f026409c4e9ba8844a238628f9ad/cenc.mpd?|drmScheme=clearkey&drmLicense=d1badeadb11f16bbd0ad7d47914d939e:bd52d185d3537c4c1759db6d66f90f31',
-                    'http://177.53.153.20:8001/play/a01v/index.m3u8'
-                ],
-                sourceNames: ['HLS Stream 1', 'DASH Stream 1', 'HLS Stream 2'],
-                movieDetails: {
-                    title: 'English TV',
-                    rating: '7.6',
-                    genre: 'Entertainment',
-                    duration: 'Live',
-                    description: 'Select Channels from Dropdown List'
-                },
-                availableQualities: [144, 240, 360, 480, 720, 1080] // Define available qualities for this video
-            };
-        default:
-            return {
-                videoSources: [],
-                sourceNames: [],
-                movieDetails: {
-                    title: 'Unknown',
-                    rating: '',
-                    genre: '',
-                    duration: '',
-                    description: ''
-                },
-                availableQualities: []
-            };
-    }
-}
-
-function updatePlayerSource(playerInstance, source) {
-    // Pause the player
-    playerInstance.pause();
-
-    // Load the new source
-    playerInstance.load({
-        file: source
-    });
-
-    // Play the player
-    playerInstance.play();
-}
+            <p class="movie-description" id="movieDescription">
+                Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state when the mind is at its most vulnerable.
+            </p>
+        </div>
+        <center><button id="backButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"></path>
+            </svg>
+            Back
+        </button></center>
+</br>
+    </div>
+</br>
+    <script src="script-jwplayer.js"></script>
+</body>
+</html>
