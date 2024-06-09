@@ -654,7 +654,14 @@ function updatePlayerSource(playerInstance, source) {
 
     // Load the new source
     playerInstance.load({
-        file: source,
+        file: source.url,
+        type: source.type,
+        drm: source.type === 'dash' ? {
+            clearkey: {
+                key: source.key,
+                keyId: source.keyId
+            }
+        } : undefined
     });
 
     // Play the player
