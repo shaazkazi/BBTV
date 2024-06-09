@@ -450,38 +450,22 @@ function getVideoSourceAndDetailsForMovie(movieId) {
                     };
             case 'movie18':
                     return {
-                        videoSources: [
-                            'https://i.mjh.nz/SamsungTVPlus/GBBC2300002GG.m3u8',
-                            'https://aba5sdmaaaaaaaamkycwliah6buj4.otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/tgcrfjcgia/out/v1/7296f026409c4e9ba8844a238628f9ad/cenc.mpd?|drmScheme=clearkey&drmLicense=d1badeadb11f16bbd0ad7d47914d939e:bd52d185d3537c4c1759db6d66f90f31',
-                            'http://177.53.153.20:8001/play/a01v/index.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBBD4100010H1.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBBC2300001X5.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBAJ40003642.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBBD2500002QC.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBBD3000001QB.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBBC900011EC.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBBD1100007AC.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBBA2200004Q3.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBAJ4900002DE.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBAJ4900006TU.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBBC90001660.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBAJ49000081B.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/GBBA3300020DM.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/USBD70000213.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/USBB1900006NY.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/USAJ3000002OC.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/USBD3500013DG.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/USAJ30000122O.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/USBC3600015GF.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/USBC3600002EK.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/FRBC800001X0.m3u8',
-                            'https://i.mjh.nz/SamsungTVPlus/FRBA3300022OA.m3u8',
-                            'https://content.uplynk.com/channel/36953f5b6546464590d2fcd954bc89cf.m3u8',
-                            'https://content.uplynk.com/channel/36953f5b6546464590d2fcd954bc89cf.m3u8',
-                            'https://59ec5453559f0.streamlock.net/miamitv/smil:WEB4141/playlist.m3u8',
-                            'https://jukin-weatherspy-2-in.samsung.wurl.tv/playlist.m3u8',
-                            'https://bloomberg-bloombergtv-1-fr.samsung.wurl.tv/manifest/playlist.m3u8',
-                        ],
+                         videoSources: [
+                    {
+                        url: 'https://58a48a11e736a.streamlock.net/uploads/jio_1437252/30e5981b030f79f1b7cc2c89cdcfe7ed/master.m3u8',
+                        type: 'hls'
+                    },
+                    {
+                        url: 'https://aba5sdmaaaaaaaamkycwliah6buj4.otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/tgcrfjcgia/out/v1/7296f026409c4e9ba8844a238628f9ad/cenc.mpd',
+                        type: 'dash',
+                        key: 'd1badeadb11f16bbd0ad7d47914d939e',
+                        keyId: 'bd52d185d3537c4c1759db6d66f90f31'
+                    },
+                    {
+                        url: 'http://177.53.153.20:8001/play/a01v/index.m3u8',
+                        type: 'hls'
+                    }
+                ],
                         sourceNames: ['Americas Got Talent', 'A&E HD', 'AXN HD', 'Crime Network', 'American Idol', 'Fail Army', 'Pointless UK', 'Wipeout Extra', 'LOL! Network', 'True Crime', 'Real Stories', 'Fashion TV', 'Action Movies - Rakuten TV', 'Top Movies - Rakuten TV', 'Drama Movies - Rakuten TV', 'Romance Movies - Rakuten TV', 'TMZ Live', 'Vice HD', 'Sony Canal Novelas', 'Stingray Spa', 'KMovies', 'Vevo Latino', 'Vevo Hip Hop', 'Fréquence Novelas', 'Televisa TeleNovelas', 'VH1+', 'VH1 Backup', 'Miami TV', 'Weather Spy', 'Bloomberg+'],
                 movieDetails: {
                             title: 'English TV',
